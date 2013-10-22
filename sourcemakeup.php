@@ -36,17 +36,12 @@
 	// - **$filter** filters out any files that contain a certain string
 	// - **$dev** mode ignores the cache file and always generates a new one
 
-	$dir = './';
-	$file = 'sourcemakeup.php';
-	$files = array(
-				'sourcemakeup.php',
-				'js/jquery.jkit.1.1.29.js',
-				'js/sourcemakeup.js',
-				'css/sourcemakeup.css'
-	);
-	$extensions = 'js,php,css';
-	$filter = '.min.js';
-	$dev = false;
+	$dir = '/home/binski/dev/cnex/cnex/';
+	$file = 'determine_cloak.php';
+  $files = array();
+  $filter = '';
+	$extensions = 'php';
+	$dev = true;
 
 	// ## The Source
 
@@ -55,10 +50,12 @@
 	if (isset($_GET['file']) && $_GET['file'] != ''){
 		$file = $_GET['file'];
 	}
+  
+  $filepath = $dir . $file;
 
 	// Define the path for our cached file:
 	
-	$cachefile = 'cache/'.md5($file).'.txt';
+	$cachefile = 'cache/'.md5($filepath).'.txt';
 
 	// Create a list of all files we want to document. In case **$files** is not empty, those files will be used and 
 	// the following code block will be ignored.
@@ -97,7 +94,7 @@
 		
 		// Load the file and create an array of all lines:
 		
-		$data = file_get_contents($file);
+		$data = file_get_contents($filepath);
 		$lines = explode("\n", $data);
 		
 		// Create some variables we need later:
