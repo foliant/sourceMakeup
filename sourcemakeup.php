@@ -118,7 +118,7 @@
 				if (!$iscomment){
 					$currentblock++;
 				}
-				$blocks[$currentblock]['comment'] .= "\n".substr(trim($line),3);
+				$blocks[$currentblock]['comment'] .= "\n".substr(ltrim($line),3);
 				$blocks[$currentblock]['code'] .= "";
 				$iscomment = true;
 				if (substr(trim(substr(trim($line),3)),0,3) == '{!}'){
